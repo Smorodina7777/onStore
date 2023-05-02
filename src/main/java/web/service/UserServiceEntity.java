@@ -37,10 +37,14 @@ public class UserServiceEntity {
   }
 
   public User findUserByNameAndEmail(String name, String email){
-    return repo.findUserByNameAndEmail(name, email);
+    return repo.findUserByEmailAndPassword(name, email);
   }
 
   public List<User> findAllByNameContaining(String name){
     return repo.findAllByNameContaining(name);
   }
+
+    public User findUserByEmailAndPassword(String email, String password) {
+      return repo.findUserByEmailAndPassword( email, password);
+    }
 }

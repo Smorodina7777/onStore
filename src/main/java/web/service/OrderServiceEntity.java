@@ -1,46 +1,22 @@
 package web.service;
 
-import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import web.model.Order;
 import web.model.User;
+import web.repository.OrderRepository;
 import web.repository.UserRepository;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
 @Transactional
-public class UserServiceEntity {
-  private final UserRepository repo;
+public class OrderServiceEntity {
+  private final OrderRepository orderRepo;
 
-  public List<User> listAll() {
-    return (List<User>) repo.findAll();
-  }
-
-  public User getById(Long id) {
-    return repo.findById(id).get();
-  }
-
-  public User saveUser(User user) {
-    return repo.save(user);
-  }
-
-  public void updateUser(User user) {
-    if (!repo.existsById(user.getId())) {
-      throw new RuntimeException("Не удалось найти пользовтаеля с id:" + user.getId());
-    }
-    repo.save(user);
-  }
-
-  public User findByEmail(String email){
-    return repo.findUserByEmail(email);
-  }
-
-  public User findUserByNameAndEmail(String name, String email){
-    return repo.findUserByNameAndEmail(name, email);
-  }
-
-  public List<User> findAllByNameContaining(String name){
-    return repo.findAllByNameContaining(name);
+  public Order saveOrder(Order order) {
+    return orderRepo.save(order);
   }
 }

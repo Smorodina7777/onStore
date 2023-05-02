@@ -1,15 +1,19 @@
 package web.repository;
 
-import java.util.List;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
+import web.model.Product;
 import web.model.User;
 
+import java.util.List;
+
 @Repository
-public interface UserRepository extends CrudRepository<User, Long> {
-  User findUserByEmail(String email);
+public interface ProductRepository extends CrudRepository<Product, Long> {
+  Product findProductByDescriptionContaining(String description);
 
-  User findUserByNameAndEmail(String name, String email);
+  Product findProductByPrice(Integer price);
 
-  List<User> findAllByNameContaining(String name);
+  List<Product> findAllByNameContaining(String name);
+  Product findProductByIdIs(Long id);
+  void deleteById(Long id);
 }

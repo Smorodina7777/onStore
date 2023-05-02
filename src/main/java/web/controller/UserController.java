@@ -27,9 +27,9 @@ public class UserController {
     }
 
     @GetMapping(value = "/email")
-    public ResponseEntity<String> getUserByNameAndEmail(@RequestParam("name") String name,
-                                                        @RequestParam("email") String email) {
-        return ResponseEntity.ok(userService.findUserByNameAndEmail(name, email).toString());
+    public ResponseEntity<String> getUserByEmailAndPassword(@RequestParam("email") String email,
+                                                        @RequestParam("password") String password) {
+        return ResponseEntity.ok(userService.findUserByEmailAndPassword (email, password).toString());
     }
 
     @GetMapping(value = "/email/all/{name}")

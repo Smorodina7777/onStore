@@ -19,9 +19,7 @@ public class User {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
-  private String name; // уникальное значение
+  private String name;
   private String password;
-  private String confirmPassword;
-  private int age;
   private String email;
 }

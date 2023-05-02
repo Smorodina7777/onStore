@@ -3,37 +3,28 @@ package web.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
+import web.model.Order;
 import web.model.User;
-import web.service.UserServiceEntity;
+import web.service.OrderServiceEntity;
 
 import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
-public class UserController {
+public class OrderController {
 
-    private final UserServiceEntity userService;
-
-    @GetMapping(value = "/")
-    public ResponseEntity<String> getHomePage() {
-        List<User> users = userService.listAll();
-        return ResponseEntity.ok(users.toString());
+    private final OrderServiceEntity orderService;
+@GetMapping("/order")
+    public ResponseEntity<Order> addOrder(){
+        return ResponseEntity.ok(orderService.saveOrder(new Order()));
     }
 
-    @GetMapping(value = "/email/{email}")
-    public ResponseEntity<String> getUserByEmail(@PathVariable("email") String email) {
-        return ResponseEntity.ok(userService.findByEmail(email).toString());
-    }
 
-    @GetMapping(value = "/email")
-    public ResponseEntity<String> getUserByNameAndEmail(@RequestParam("name") String name,
-                                                        @RequestParam("email") String email) {
-        return ResponseEntity.ok(userService.findUserByNameAndEmail(name, email).toString());
-    }
 
-    @GetMapping(value = "/email/all/{name}")
-    public ResponseEntity<String> getAllUserContainsName(@PathVariable("name") String name) {
-        return ResponseEntity.ok(userService.findAllByNameContaining(name).toString());
-    }
+
+
+
 }
